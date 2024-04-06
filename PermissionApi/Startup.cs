@@ -52,7 +52,7 @@ namespace PermissionApi
             IMapper mapper = mapperConfig.CreateMapper();
             services.AddSingleton(mapper);
             services.AddScoped<IBaseRepository<Permission>, PermissionRepository>();
-            services.AddScoped<IBaseService<PermissionDto>, BaseService<Permission, PermissionDto>>();
+            services.AddScoped<IPermissionService, PermissionService>();
             services.AddScoped<IValidator<PermissionDto>, PermissionValidation>();
 
             services.AddScoped<IBaseRepository<PermissionType>, PermissionTypeRepository>();

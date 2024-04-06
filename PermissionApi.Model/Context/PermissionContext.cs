@@ -28,7 +28,6 @@ namespace PermissionManagement.Model.Context
                 new PermissionType { Id = 2, Description = "Diligencias", CreatedDate = DateTime.Now },
                 new PermissionType { Id = 3, Description = "Otro", CreatedDate = DateTime.Now });
 
-
             base.OnModelCreating(modelBuilder);
         }
         

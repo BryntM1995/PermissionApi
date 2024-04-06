@@ -14,6 +14,7 @@ namespace PermissionManagement.Repository
         Task RemoveAsync(int key);
         Task<Entity> GetByIdAsync(int key);
         Task<IEnumerable<Entity>> GetAllAsync(Func<Entity, bool> predicate = null);
+        IQueryable<Entity> Query();
     }
 
     public class BaseRepository<Entity> : IBaseRepository<Entity> where Entity : class, IBaseEntity
@@ -57,5 +58,9 @@ namespace PermissionManagement.Repository
             return await query.ToListAsync();
         }
 
+        public IQueryable<Entity> Query()
+        {
+            return _dbSet;
+        }
     }
 }

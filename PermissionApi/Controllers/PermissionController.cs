@@ -11,9 +11,9 @@ namespace PermissionManagement.Controllers
     [ApiController]
     public class PermissionController : ControllerBase
     {
-        private readonly IBaseService<PermissionDto> _PermissionService;
+        private readonly IPermissionService _PermissionService;
 
-        public PermissionController(IBaseService<PermissionDto> permissionService)
+        public PermissionController(IPermissionService permissionService)
         {
             _PermissionService = permissionService;
         }

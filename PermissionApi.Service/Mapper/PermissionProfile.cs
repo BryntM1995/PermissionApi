@@ -12,7 +12,7 @@ namespace PermissionManagement.Service.Mapper
         public PermissionProfile()
         {
             CreateMap<PermissionDto, Permission>();
-            CreateMap<Permission, PermissionDto>();
+            CreateMap<Permission, PermissionDto>().ForMember(d => d.PermissionTypeName, m => m.MapFrom(s=> s.PermissionType.Description));
         }
     }
 }

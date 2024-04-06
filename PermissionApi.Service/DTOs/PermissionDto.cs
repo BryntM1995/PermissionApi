@@ -8,5 +8,6 @@ namespace PermissionManagement.Service.DTOs
         public string EmployeeLastName { get; set; }
         public int PermissionTypeId { get; set; }
         public DateTime PermissionDate { get; set; }
+        public string PermissionTypeName { get; set; }
     }
 }

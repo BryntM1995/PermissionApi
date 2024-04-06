@@ -22,7 +22,7 @@ namespace PermissionManagement.Service
         where Entity : class, IBaseEntity
     {
         private readonly IValidator<EntityDto> _validator;
-        private readonly IMapper _mapper;
+        protected readonly IMapper _mapper;
         protected readonly IBaseRepository<Entity> _repository;
         public BaseService(
             IBaseRepository<Entity> repository,
@@ -33,7 +33,7 @@ namespace PermissionManagement.Service
             _mapper = mapper;
             _validator = validator;
         }
-        public async Task<int> AddAsync(EntityDto dto)
+        public virtual async Task<int> AddAsync(EntityDto dto)
         {
             var result = _validator.Validate(dto);
             var record = await _repository.GetByIdAsync(dto.Id);
@@ -44,21 +44,21 @@ namespace PermissionManagement.Service
             return await _repository.AddAsync(entity);
         }
 
-        public async Task<IEnumerable<EntityDto>> GetAllAsync()
+        public virtual async Task<IEnumerable<EntityDto>> GetAllAsync()
         {
             var result = await _repository.GetAllAsync();
             var entityDtos = _mapper.Map<IEnumerable<EntityDto>>(result);
             return entityDtos;
         }
 
-        public async Task<EntityDto> GetByIdAsync(int key)
+        public virtual async Task<EntityDto> GetByIdAsync(int key)
         {
             var entity = await _repository.GetByIdAsync(key);
             var dto = _mapper.Map<EntityDto>(entity);
             return dto;
         }
 
-        public async Task RemoveAsync(int key)
+        public virtual async Task RemoveAsync(int key)
         {
             var record = await _repository.GetByIdAsync(key);
 
@@ -68,7 +68,7 @@ namespace PermissionManagement.Service
             await _repository.RemoveAsync(key);
         }
 
-        public async Task UpdateAsync(EntityDto dto)
+        public virtual async Task UpdateAsync(EntityDto dto)
         {
             var result = _validator.Validate(dto);
             var entity = await _repository.GetByIdAsync(dto.Id);
