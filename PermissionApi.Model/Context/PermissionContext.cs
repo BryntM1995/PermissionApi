@@ -3,6 +3,8 @@ using PermissionManagement.Model.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace PermissionManagement.Model.Context
 {
@@ -26,13 +28,13 @@ namespace PermissionManagement.Model.Context
             base.OnModelCreating(modelBuilder);
         }
         
-        public override int SaveChanges()
+        public async override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
         {
             // Get the entries that are auditable
             var entries = ChangeTracker.Entries<IAuditEntity>();
 
             if (entries == null)
-                return base.SaveChanges();
+                return  await base.SaveChangesAsync(cancellationToken);
 
             var userId = Guid.NewGuid().ToString();
             var currentDate = DateTime.Now;
@@ -60,7 +62,7 @@ namespace PermissionManagement.Model.Context
                         break;
                 }
             }
-            return base.SaveChanges();
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
 }
