@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using PermissionManagement.Model.Entities;
 using PermissionManagement.Repository;
 using PermissionManagement.Service.DTOs;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace PermissionManagement.Service
@@ -40,7 +37,7 @@ namespace PermissionManagement.Service
         {
             var result = _validator.Validate(dto);
             var record = await _repository.GetByIdAsync(dto.Id);
-            if (record != null || !result.IsValid )
+            if (record != null || !result.IsValid)
                 throw new InvalidOperationException("This entity already exist or is invalid.");
 
             var entity = _mapper.Map<Entity>(dto);
@@ -66,9 +63,9 @@ namespace PermissionManagement.Service
             var record = await _repository.GetByIdAsync(key);
 
             if (record == null)
-                throw new InvalidOperationException("This entity doesn't exist or is invalid.");
+                throw new InvalidOperationException("This entity doesn't exist.");
 
-                await _repository.RemoveAsync(key);
+            await _repository.RemoveAsync(key);
         }
 
         public async Task UpdateAsync(EntityDto dto)
@@ -80,7 +77,7 @@ namespace PermissionManagement.Service
                 throw new InvalidOperationException("This entity doesn't exist or is invalid.");
 
 
-            var newEntity =  _mapper.Map(dto, entity);
+            var newEntity = _mapper.Map(dto, entity);
             await _repository.UpdateAsync(newEntity);
         }
     }

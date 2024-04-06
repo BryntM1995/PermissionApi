@@ -10,7 +10,7 @@ using PermissionManagement.Model.Context;
 namespace PermissionApi.Model.Migrations
 {
     [DbContext(typeof(PermissionContext))]
-    [Migration("20240405210331_Initial")]
+    [Migration("20240406004422_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,6 +93,29 @@ namespace PermissionApi.Model.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PermissionType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedDate = new DateTime(2024, 4, 5, 20, 44, 21, 836, DateTimeKind.Local).AddTicks(3929),
+                            Description = "Enfermedad",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedDate = new DateTime(2024, 4, 5, 20, 44, 21, 837, DateTimeKind.Local).AddTicks(65),
+                            Description = "Diligencias",
+                            IsDeleted = false
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedDate = new DateTime(2024, 4, 5, 20, 44, 21, 837, DateTimeKind.Local).AddTicks(81),
+                            Description = "Otro",
+                            IsDeleted = false
+                        });
                 });
 
             modelBuilder.Entity("PermissionManagement.Model.Entities.Permission", b =>

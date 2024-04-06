@@ -52,6 +52,21 @@ namespace PermissionApi.Model.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "PermissionType",
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "IsDeleted", "UpdatedBy", "UpdatedDate" },
+                values: new object[] { 1, null, new DateTime(2024, 4, 5, 20, 44, 21, 836, DateTimeKind.Local).AddTicks(3929), "Enfermedad", false, null, null });
+
+            migrationBuilder.InsertData(
+                table: "PermissionType",
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "IsDeleted", "UpdatedBy", "UpdatedDate" },
+                values: new object[] { 2, null, new DateTime(2024, 4, 5, 20, 44, 21, 837, DateTimeKind.Local).AddTicks(65), "Diligencias", false, null, null });
+
+            migrationBuilder.InsertData(
+                table: "PermissionType",
+                columns: new[] { "Id", "CreatedBy", "CreatedDate", "Description", "IsDeleted", "UpdatedBy", "UpdatedDate" },
+                values: new object[] { 3, null, new DateTime(2024, 4, 5, 20, 44, 21, 837, DateTimeKind.Local).AddTicks(81), "Otro", false, null, null });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Permission_PermissionTypeId",
                 table: "Permission",

@@ -32,10 +32,10 @@ namespace PermissionManagement.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Add([FromBody] PermissionTypeDto value)
+        public async Task<int> Add([FromBody] PermissionTypeDto value)
         {
-            await _PermissionTypeService.AddAsync(value);
-            return Ok();
+           var id = await _PermissionTypeService.AddAsync(value);
+           return id;
         }
 
         [HttpPut("{id}")]
@@ -49,10 +49,9 @@ namespace PermissionManagement.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Remove([FromRoute] int id)
+        public async Task Remove([FromRoute] int id)
         {
             await _PermissionTypeService.RemoveAsync(id);
-            return Ok();
         }
     }
 }
